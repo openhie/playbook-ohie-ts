@@ -1,6 +1,7 @@
 ---  
 - name: Set Mysql root password
   mysql_user: check_implicit_admin=yes login_user=root login_password={{ mysqlrootpwd }} name=root password={{ mysqlrootpwd }} state=present
+  ignore_errors: True # Temp fix - ansible 1.3.4
 
 - name: Create dts database
   mysql_db: name=dts state=present login_user=root login_password={{ mysqlrootpwd }} 

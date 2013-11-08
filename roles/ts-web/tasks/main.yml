@@ -1,7 +1,36 @@
 ---
-- name: Create openempi DB user
-  postgresql_user: state=present name=openempi password={{ dbuserpwd }}
+- name: Install apache, tomcat, and php
+  apt: update_cache=yes name={{ item }} state=installed
+  with_items:
+   - apache2
+   - tomcat7
+   - php5
+   - libapache2-mod-php5
+   - php5-cgi
+   - git
 
-- name: Create openempi DB
-  postgresql_db: name=openempi state=present owner=openempi
+- name: Modify php.ini
+  lineinfile: dest=/etc/php5/apache2/php.ini state=present regexp=^allow_url_include line="allow_url_include = On"
+
+- name: Download php/java bridge
+  get_url: url="http://softlayer-dal.dl.sourceforge.net/project/php-java-bridge/Binary%20package/php-java-bridge_6.2.1/JavaBridgeTemplate621.war" dest=/var/lib/tomcat7/webapps/JavaBridge.war owner=tomcat7 group=tomcat7
+
+- name: Clone ts-browser
+  git: repo=https://github.com/jembi/ts-browser.git dest=/opt/ts-browser
+
+- name: Copy ts-browser to /var/www
+  command: cp -r {{ item }} /var/www/
+  with_fileglob:
+    - /opt/ts-browser/Web/*
+
+- name: Create export dir
+  file: path=/var/www/export state=directory owner=tomcat7 group=tomcat7
+
+- name: Copy over jar files
+  copy: src=ts-jars.tar.gz dest=/tmp
+
+- name: Extract jars to tomcat lib
+  command: chdir=/tmp tar zxf /tmp/ts-jars.tar.gz -C /usr/share/tomcat7/lib/
+  notify: restart apache
+  notify: restart tomcat
 
