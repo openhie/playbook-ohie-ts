@@ -1,0 +1,11 @@
+---  
+- name:  Install mysql
+  apt: name={{ item }} state=installed
+  with_items:
+    - mysql-server
+    - python-mysqldb
+
+- name: Copy mysql config 
+  template: src=my.cnf dest=/etc/mysql/my.cnf
+  notify: restart mysql
+

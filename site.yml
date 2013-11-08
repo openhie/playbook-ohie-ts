@@ -1,0 +1,16 @@
+---
+- name: Setup server
+  hosts: servers
+  user: root
+
+  roles:
+    - apelon-dts
+    - mysql
+
+- name: Configure server
+  hosts: servers
+  user: root
+
+  roles:
+    - mysql-config
+#    - ts-web

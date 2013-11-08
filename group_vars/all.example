@@ -1,0 +1,6 @@
+---
+# Set mysql root password
+mysqlrootpwd: password
+# Set dts mysql password
+dtsmysqlpwd: password
+

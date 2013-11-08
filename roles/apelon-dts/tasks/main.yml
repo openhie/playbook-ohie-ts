@@ -1,0 +1,11 @@
+---  
+- name: Download Apelon-DTS
+  get_url: dest=/tmp url=http://softlayer-dal.dl.sourceforge.net/project/apelon-dts/dts-linux/3.5.2/apelon-dts-3.5.2.203-linux-mysql.tar.gz
+
+- name: Extract Apelon-DTS to /opt
+  command: chdir=/opt creates=/opt/apelon-dts tar xzf /tmp/apelon-dts-3.5.2.203-linux-mysql.tar.gz -C /opt/apelon-dts
+
+- name: Make scripts executable
+  shell: /opt/apelon-dts/bin/makeScriptsExecutable.sh
+
+## TODO: Make runnable as normal user, copy init script

@@ -1,0 +1,17 @@
+---  
+- name: Set Mysql root password
+  mysql_user: check_implicit_admin=yes login_user=root login_password={{ mysqlrootpwd }} name=root password={{ mysqlrootpwd }} state=present
+
+- name: Create dts database
+  mysql_db: name=dts state=present login_user=root login_password={{ mysqlrootpwd }} 
+
+- name: Create dts mysql user
+  mysql_user: name=dts state=present password={{ dtsmysqlpwd }} login_user=root login_password={{ mysqlrootpwd }} priv=dts.*:ALL
+
+- name: Copy mysql credentials file 
+  template: src=target-connection.xml dest=/opt/apelon-dts/bin/kb/target-connection.xml mode=0600
+
+- name: Create dts schema
+  shell: chdir=/opt/apelon-dts/bin/kb kbcreate.sh
+
+
