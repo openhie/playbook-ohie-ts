@@ -1,4 +1,9 @@
 ---  
+- name:  Install OpenJDK JRE 7
+  apt: update_cache=yes name={{ item }} state=installed
+  with_items:
+   - openjdk-7-jre-headless
+
 - name: Download Apelon-DTS
   get_url: dest=/tmp url=http://softlayer-dal.dl.sourceforge.net/project/apelon-dts/dts-linux/3.5.2/apelon-dts-3.5.2.203-linux-mysql.tar.gz
 
