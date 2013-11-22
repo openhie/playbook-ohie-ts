@@ -16,7 +16,7 @@
   file: path=/opt/apelon-dts/bin/kb/create/kbcreate.sh mode=775
 
 - name: change kbcreate to overwrite database (be careful)
-  lineinfile: dest=/opt/apelon-dts/bin/kb/create/kbcreate.sh regexp="^exec java $JAVA_OPTIONS" line="exec java $JAVA_OPTIONS com.apelon.common.util.db.DbCreate -startSeq 2000000000000 -c com.apelon.dts.db.admin.config.DBCreateConfig -p kb/create/kbcreate.xml -t kb/target-connection.xml -skipPause" state=present
+  lineinfile: dest=/opt/apelon-dts/bin/kb/create/kbcreate.sh regexp=^exec line="exec java $JAVA_OPTIONS com.apelon.common.util.db.DbCreate -startSeq 2000000000000 -c com.apelon.dts.db.admin.config.DBCreateConfig -p kb/create/kbcreate.xml -t kb/target-connection.xml -skipPause" state=present
 
 - name: Create dts schema
   shell: chdir=/opt/apelon-dts/bin/kb/create/ ./kbcreate.sh
