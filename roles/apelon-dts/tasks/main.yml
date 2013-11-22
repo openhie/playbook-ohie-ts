@@ -13,6 +13,9 @@
 - name: Extract Apelon-DTS to /opt
   command: chdir=/opt tar xzf /tmp/apelon-dts-3.5.2.203-linux-mysql.tar.gz -C /opt/apelon-dts
 
+- name: chmod scripts
+  file: path=/opt/apelon-dts/bin/makeScriptsExecutable.sh mode=755
+
 - name: Make scripts executable
   shell: /opt/apelon-dts/bin/makeScriptsExecutable.sh
 
