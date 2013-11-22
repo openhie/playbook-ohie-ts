@@ -4,13 +4,13 @@
   user: root
 
   roles:
-#    - apelon-dts
-#    - mysql
+    - apelon-dts
+    - mysql
 
 - name: Configure server
   hosts: servers
   user: root
 
   roles:
-#    - mysql-config
+    - mysql-config
     - ts-web
