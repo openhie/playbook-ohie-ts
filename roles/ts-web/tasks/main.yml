@@ -19,9 +19,7 @@
   git: repo=https://github.com/jembi/ts-browser.git dest=/opt/ts-browser
 
 - name: Copy ts-browser to /var/www
-  command: cp -r {{ item }} /var/www/
-  with_fileglob:
-    - /opt/ts-browser/Web/*
+  shell: cp -r /opt/ts-browser/Web/* /var/www/
 
 - name: Create export dir
   file: path=/var/www/export state=directory owner=tomcat7 group=tomcat7
