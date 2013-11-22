@@ -16,6 +16,6 @@
   file: path=/opt/apelon-dts/bin/kb/create/kbcreate.sh mode=775
 
 - name: Create dts schema
-  shell: chdir=/opt/apelon-dts/bin/kb/create/ ./kbcreate.sh
+  shell: chdir=/opt/apelon-dts/bin/kb/create/ ./kbcreate.sh -skipPause
 
 
