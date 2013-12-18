@@ -19,4 +19,10 @@
 - name: Make scripts executable
   shell: /opt/apelon-dts/bin/makeScriptsExecutable.sh
 
-## TODO: Make runnable as normal user, copy init script
+- name: Insert init script
+  template: src=dts dest=/etc/init.d/dts owner=root group=root
+
+- name: Start dts on boot
+  service: name=dts enabled=yes state=started
+
+## TODO: Make runnable as normal user

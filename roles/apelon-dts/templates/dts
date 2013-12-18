@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# DTS Linux service controller script
+cd "/opt/apelon-dts/bin/"
+
+case "$1" in
+    start)
+        ./dts.sh start
+        ;;
+    stop)
+        ./dts.sh stop
+        ;;
+    restart)
+        ./dts.sh stop
+        sleep 5
+        ./dts.sh start
+        ;;
+    *)
+        echo "Usage: $0 {start|stop|restart}"
+        exit 1
+        ;;
+esac
