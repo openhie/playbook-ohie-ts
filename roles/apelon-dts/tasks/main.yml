@@ -20,7 +20,7 @@
   shell: /opt/apelon-dts/bin/makeScriptsExecutable.sh
 
 - name: Insert init script
-  template: src=dts dest=/etc/init.d/dts owner=root group=root
+  template: src=dts dest=/etc/init.d/dts owner=root group=root mode=0755
 
 - name: Start dts on boot
   service: name=dts enabled=yes state=started
