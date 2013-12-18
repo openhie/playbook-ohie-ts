@@ -11,6 +11,7 @@
 
 - name: Modify php.ini
   lineinfile: dest=/etc/php5/apache2/php.ini state=present regexp=^allow_url_include line="allow_url_include = On"
+  notify: restart apache2
 
 - name: Download php/java bridge
   get_url: url="http://softlayer-dal.dl.sourceforge.net/project/php-java-bridge/Binary%20package/php-java-bridge_6.2.1/JavaBridgeTemplate621.war" dest=/var/lib/tomcat7/webapps/JavaBridge.war owner=tomcat7 group=tomcat7
@@ -29,6 +30,5 @@
 
 - name: Extract jars to tomcat lib
   command: chdir=/tmp tar zxf /tmp/ts-jars.tar.gz -C /usr/share/tomcat7/lib/
-  notify: restart apache
-  notify: restart tomcat
+  notify: restart tomcat7
 

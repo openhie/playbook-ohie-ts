@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # DTS Linux service controller script
-cd "/opt/apelon-dts/bin/"
+cd /opt/apelon-dts/bin
 
 case "$1" in
     start)

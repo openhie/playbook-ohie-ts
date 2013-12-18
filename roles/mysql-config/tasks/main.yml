@@ -8,9 +8,13 @@
 
 - name: Create dts mysql user
   mysql_user: name=dts state=present password={{ dtsmysqlpwd }} login_user=root login_password={{ mysqlrootpwd }} priv=dts.*:ALL
+  notify: restart mysql
 
 - name: Copy mysql credentials file 
   template: src=target-connection.xml dest=/opt/apelon-dts/bin/kb/target-connection.xml mode=0600
+
+- name: Insert apelonserverprops.xml
+  template: src=apelonserverprops.xml dest=/opt/apelon-dts/bin/server mode=0600
 
 - name: Make scripts executable
   file: path=/opt/apelon-dts/bin/kb/create/kbcreate.sh mode=775

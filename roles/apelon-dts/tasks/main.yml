@@ -17,7 +17,7 @@
   file: path=/opt/apelon-dts/bin/makeScriptsExecutable.sh mode=755
 
 - name: Make scripts executable
-  shell: /opt/apelon-dts/bin/makeScriptsExecutable.sh
+  shell: chdir=/opt/apelon-dts/bin ./makeScriptsExecutable.sh
 
 - name: Insert init script
   template: src=dts dest=/etc/init.d/dts owner=root group=root mode=0755

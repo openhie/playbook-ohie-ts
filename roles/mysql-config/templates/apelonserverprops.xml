@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~    Copyright 2008 Apelon Inc.
+  ~
+  ~    Licensed under the Apache License, Version 2.0 (the "License");
+  ~    you may not use this file except in compliance with the License.
+  ~    You may obtain a copy of the License at
+  ~
+  ~        http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~    Unless required by applicable law or agreed to in writing, software
+  ~    distributed under the License is distributed on an "AS IS" BASIS,
+  ~    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~    See the License for the specific language governing permissions and
+  ~    limitations under the License.
+  -->
+
+<!DOCTYPE apelonserverconfig SYSTEM "http://apelon.com/dtd/properties/apelonserverconfig.dtd">
+<!-- ApelProps-->
+<apelonserverconfig>
+  <property name="port" value="6666"/>
+  <property name="log" value="server/apelonserverlog.xml"/>
+  <property name="validate_parser" value="false"/>
+  <property name="authentication" value="false"/>
+  <property name="user_admin" value="com.apelon.dts.server.DTSUsers"/>
+
+  <!-- MySQL JDBC Connection Configuration -->
+  <connection default="true">
+    <property name="type" value="mysql"/>
+    <property name="jdbcDriver" value="com.mysql.jdbc.Driver"/>
+    <property name="url_template" value="jdbc:mysql://[HOST]:[PORT]/[DATABASE]"/>
+    <property name="user" value="dts"/>
+    <property name="pass" value="{{ dtsmysqlpwd }}"/>
+    <property name="host" value="localhost"/>
+    <property name="database_name" value="dts"/>
+    <property name="database_port" value="3306"/>
+  </connection>
+
+  <!-- Query Servers-->
+  <queryserver>
+    <property name="qs" value="com.apelon.dts.server.MatchServer"/>
+    <property name="maxDbConns" value="15"/>
+    <property name="header" value="DTS:004"/>
+  </queryserver>
+  <queryserver>
+    <property name="qs" value="com.apelon.dts.server.SubConceptServer"/>
+    <property name="maxDbConns" value="15"/>
+    <property name="header" value="DTS:005"/>
+  </queryserver>
+  <queryserver>
+    <property name="qs" value="com.apelon.dts.server.NavQueryServer"/>
+    <property name="maxDbConns" value="15"/>
+    <property name="header" value="DTS:006"/>
+  </queryserver>
+  <queryserver>
+    <property name="qs" value="com.apelon.dts.server.SearchQueryServer"/>
+    <property name="maxDbConns" value="15"/>
+    <property name="header" value="DTS:007"/>
+  </queryserver>
+  <queryserver>
+    <property name="qs" value="com.apelon.dts.server.ThesaurusConceptServer"/>
+    <property name="maxDbConns" value="15"/>
+    <property name="header" value="DTS:009"/>
+  </queryserver>
+  <queryserver>
+    <property name="qs" value="com.apelon.dts.server.AssociationServer"/>
+    <property name="maxDbConns" value="15"/>
+    <property name="header" value="DTS:010"/>
+  </queryserver>
+  <queryserver>
+    <property name="qs" value="com.apelon.dts.server.NamespaceServer"/>
+    <property name="maxDbConns" value="15"/>
+    <property name="header" value="DTS:011"/>
+  </queryserver>
+  <queryserver>
+    <property name="qs" value="com.apelon.dts.server.TermServer"/>
+    <property name="maxDbConns" value="15"/>
+    <property name="header" value="DTS:012"/>
+  </queryserver>
+  <queryserver>
+    <property name="qs" value="com.apelon.dts.server.DTSConceptServer"/>
+    <property name="maxDbConns" value="15"/>
+    <property name="header" value="DTS:014"/>
+  </queryserver>
+  <queryserver>
+    <property name="qs" value="com.apelon.dts.server.OntylogConceptServer"/>
+    <property name="maxDbConns" value="15"/>
+    <property name="header" value="DTS:015"/>
+  </queryserver>
+  <queryserver>
+    <property name="qs" value="com.apelon.dts.server.ClassifyServer"/>
+    <property name="maxDbConns" value="15"/>
+    <property name="header" value="DTS:016"/>
+    <!-- mc.properties file contains the modular classifier
+     url mapping for supported subscription namespaces.-->
+    <property name="app_arg" value="server/mc.properties"/>
+  </queryserver>
+  <!--
+    QueryServer for handling OntylogExtension Namespace API calls
+  -->
+  <queryserver>
+    <property name="qs" value="com.apelon.dts.server.OntylogExtConceptServer"/>
+    <property name="maxDbConns" value="15"/>
+    <property name="header" value="DTS:017"/>
+  </queryserver>
+  <!--
+    QueryServer for handling Classify Details calls
+  -->
+  <queryserver>
+    <property name="qs" value="com.apelon.dts.server.ClassifyDetailsServer"/>
+    <property name="maxDbConns" value="15"/>
+    <property name="header" value="DTS:018"/>
+  </queryserver>
+  <!--
+    QueryServer for handling common DTS calls
+  -->
+  <queryserver>
+    <property name="qs" value="com.apelon.dts.server.DTSCommonServer"/>
+    <property name="maxDbConns" value="15"/>
+    <property name="header" value="DTS:019"/>
+  </queryserver>
+  <!--
+    QueryServer for handling DTS Subset calls
+  -->
+  <queryserver>
+    <property name="qs" value="com.apelon.dts.server.SubsetServer"/>
+    <property name="maxDbConns" value="15"/>
+    <property name="header" value="DTS:020"/>
+  </queryserver>
+  <!--
+    DTS Workflow Query Servers.
+  -->
+  <!--
+  <queryserver>
+    <property name="qs" value="com.apelon.dtswf.server.VersionServer" />
+    <property name="maxDbConns" value="15" />
+    <property name="header" value="DWF:001" />
+  </queryserver>
+
+  <queryserver>
+    <property name="qs" value="com.apelon.dtswf.server.AssignmentServer" />
+    <property name="maxDbConns" value="15" />
+    <property name="header" value="DWF:002" />
+  </queryserver>
+  -->
+</apelonserverconfig>
