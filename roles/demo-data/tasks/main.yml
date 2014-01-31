@@ -1,6 +1,6 @@
 ---
-- name: copy demo data
-  copy: src=ts-demo.sql.gz dest=/tmp/ts-demo.sql.gz
+- name: download ts demo data
+  get_url: url="http://sandbox.ohie.org/files/ts-demo.sql.gz" dest=/tmp/ts-demo.sql.gz sha256sum=68b6c02c734c531659236c8cf98a6dce4bcff2da86ea59b85aa0feabae1759d7
 
 - name: decompress demo data
   command: gunzip /tmp/ts-demo.sql.gz
