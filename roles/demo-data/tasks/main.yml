@@ -1,0 +1,10 @@
+---
+- name: copy demo data
+  copy: src=ts-demo.sql.gz dest=/tmp/ts-demo.sql.gz
+
+- name: decompress demo data
+  command: gunzip /tmp/ts-demo.sql.gz
+
+- name: import demo data
+  mysql_db: name=dts login_user=dts login_password={{ dtsmysqlpwd }} state=import target=/tmp/ts-demo.sql
+  notify: restart dts

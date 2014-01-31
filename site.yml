@@ -14,3 +14,4 @@
   roles:
     - mysql-config
     - ts-web
+    - demo-data
